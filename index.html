@@ -1,0 +1,260 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="FocusForge helps students organize tasks, build focus habits, and track productivity.">
+    <title>FocusForge | Your Productivity Workspace</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" href="css/style.css">
+    <script src="js/app.js" defer></script>
+</head>
+
+<body>
+    <div class="app-layout">
+
+        <!-- Sidebar -->
+        <aside class="sidebar" id="sidebar">
+            <a href="#" class="brand">
+                <span class="brand-icon">F</span>
+                <span>FocusForge</span>
+            </a>
+
+            <div class="sidebar-label">WORKSPACE</div>
+
+            <nav class="navigation" aria-label="Main navigation">
+                <a href="#dashboard" class="nav-link active" data-view="dashboard">
+                    <span class="nav-icon">⌂</span>
+                    Dashboard
+                </a>
+
+                <a href="#tasks" class="nav-link" data-view="tasks">
+                    <span class="nav-icon">▤</span>
+                    My Tasks
+                    <span class="nav-count" id="sidebar-task-count">0</span>
+                </a>
+
+                <a href="#focus" class="nav-link" data-view="focus">
+                    <span class="nav-icon">◷</span>
+                    Focus
+                </a>
+
+                <a href="#statistics" class="nav-link" data-view="statistics">
+                    <span class="nav-icon">▥</span>
+                    Statistics
+                </a>
+            </nav>
+
+            <div class="sidebar-bottom">
+                <div class="sidebar-label">PREFERENCES</div>
+
+                <button class="nav-link settings-button" id="theme-toggle">
+                    <span class="nav-icon" id="theme-icon">☾</span>
+                    <span id="theme-label">Dark mode</span>
+                </button>
+
+                <div class="sidebar-note">
+                    <span class="note-indicator"></span>
+                    <div>
+                        <strong>Small steps matter.</strong>
+                        <p>Build your focus, one session at a time.</p>
+                    </div>
+                </div>
+            </div>
+        </aside>
+
+        <!-- Main content -->
+        <main class="main-content" id="main-content">
+
+            <header class="topbar">
+                <button class="mobile-menu" id="mobile-menu" aria-label="Toggle navigation">
+                    ☰
+                </button>
+
+                <div class="breadcrumb">
+                    Workspace <span>/</span> <strong id="page-title">Dashboard</strong>
+                </div>
+
+                <div class="topbar-right">
+                    <span class="status-dot"></span>
+                    <span class="status-text">Your space, your pace</span>
+                    <div class="avatar">S</div>
+                </div>
+            </header>
+
+            <!-- Dashboard view -->
+            <section class="page-view" id="dashboard-view">
+
+                <section class="welcome-section">
+                    <div>
+                        <p class="eyebrow">YOUR PRODUCTIVITY WORKSPACE</p>
+                        <h1>Make today <span>count.</span></h1>
+                        <p class="welcome-description">
+                            Focus on what matters. Progress takes consistency.
+                        </p>
+                    </div>
+
+                    <button class="primary-button" id="quick-focus">
+                        <span>▶</span> Start focusing
+                    </button>
+                </section>
+
+                <!-- Summary cards -->
+                <section class="stats-grid" aria-label="Productivity overview">
+
+                    <article class="stat-card">
+                        <div class="stat-heading">
+                            <span>Tasks completed</span>
+                            <span class="stat-icon task-icon">✓</span>
+                        </div>
+                        <h2 id="tasks-completed">0 <span>/ 0</span></h2>
+                        <p class="stat-caption">Your daily task progress</p>
+                        <div class="progress-track">
+                            <div class="progress-fill task-progress" id="task-progress"></div>
+                        </div>
+                    </article>
+
+                    <article class="stat-card">
+                        <div class="stat-heading">
+                            <span>Focus time today</span>
+                            <span class="stat-icon focus-icon">◷</span>
+                        </div>
+                        <h2 id="focus-time">0m</h2>
+                        <p class="stat-caption">Time invested in focused work</p>
+                        <div class="progress-track">
+                            <div class="progress-fill focus-progress" id="focus-progress"></div>
+                        </div>
+                    </article>
+
+                    <article class="stat-card">
+                        <div class="stat-heading">
+                            <span>Current streak</span>
+                            <span class="stat-icon streak-icon">↗</span>
+                        </div>
+                        <h2 id="current-streak">0 <span>days</span></h2>
+                        <p class="stat-caption">Keep showing up consistently</p>
+                        <div class="progress-track">
+                            <div class="progress-fill streak-progress" id="streak-progress"></div>
+                        </div>
+                    </article>
+                </section>
+
+                <!-- Main dashboard panels -->
+                <section class="dashboard-grid">
+
+                    <article class="panel tasks-panel" id="tasks-panel">
+                        <div class="panel-heading">
+                            <div>
+                                <p class="eyebrow">STAY ORGANIZED</p>
+                                <h2>Today's tasks</h2>
+                            </div>
+
+                            <button class="text-button" id="view-all-tasks">
+                                View all →
+                            </button>
+                        </div>
+
+                        <form class="task-form" id="task-form">
+                            <input
+                                type="text"
+                                id="task-input"
+                                placeholder="What do you need to accomplish?"
+                                aria-label="New task"
+                                maxlength="120"
+                                required
+                            >
+
+                            <button type="submit" class="add-task-button" aria-label="Add task">
+                                +
+                            </button>
+                        </form>
+
+                        <div class="task-list" id="task-list">
+                            <div class="empty-state">
+                                <span class="empty-icon">✦</span>
+                                <h3>Your day starts here</h3>
+                                <p>Add a task above and turn your plans into progress.</p>
+                            </div>
+                        </div>
+                    </article>
+
+                    <article class="panel focus-panel" id="focus-panel">
+                        <div class="panel-heading">
+                            <div>
+                                <p class="eyebrow">ONE THING AT A TIME</p>
+                                <h2>Focus session</h2>
+                            </div>
+
+                            <span class="session-badge">POMODORO</span>
+                        </div>
+
+                        <div class="timer-container">
+                            <div class="timer-ring">
+                                <div class="timer-inner">
+                                    <span class="timer-mode" id="timer-mode">FOCUS TIME</span>
+                                    <span class="timer-display" id="timer-display">25:00</span>
+                                    <span class="timer-caption" id="timer-caption">Ready when you are</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="timer-presets">
+                            <button class="preset-button active" data-minutes="25">25 min</button>
+                            <button class="preset-button" data-minutes="50">50 min</button>
+                            <button class="preset-button" data-minutes="15">15 min</button>
+                        </div>
+
+                        <div class="timer-actions">
+                            <button class="primary-button timer-start" id="timer-start">
+                                ▶ Start session
+                            </button>
+
+                            <button class="secondary-button" id="timer-reset">
+                                Reset
+                            </button>
+                        </div>
+
+                        <p class="timer-tip">One focused session is better than an hour of distraction.</p>
+                    </article>
+
+                </section>
+
+                <footer class="app-footer">
+                    <span>FocusForge</span>
+                    <span>Build discipline. Protect your focus.</span>
+                </footer>
+            </section>
+
+            <!-- Other views will be developed in later stages -->
+            <section class="page-view secondary-view hidden" id="tasks-view">
+                <p class="eyebrow">YOUR WORKSPACE</p>
+                <h1>My tasks</h1>
+                <p>Organize your priorities and keep moving forward.</p>
+                <div id="all-tasks-container"></div>
+            </section>
+
+            <section class="page-view secondary-view hidden" id="focus-view">
+                <p class="eyebrow">DEEP WORK</p>
+                <h1>Protect your focus.</h1>
+                <p>Choose one task, eliminate distractions, and begin.</p>
+                <button class="primary-button" id="focus-dashboard-link">Open focus timer</button>
+            </section>
+
+            <section class="page-view secondary-view hidden" id="statistics-view">
+                <p class="eyebrow">MEASURE YOUR PROGRESS</p>
+                <h1>Your statistics</h1>
+                <p>Your productivity history and insights will appear here as you work.</p>
+                <div class="panel statistics-placeholder">
+                    <h2>Consistency over perfection.</h2>
+                    <p>Complete focus sessions to start building your productivity history.</p>
+                </div>
+            </section>
+
+        </main>
+    </div>
+</body>
+</html>
